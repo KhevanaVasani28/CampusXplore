@@ -80,12 +80,3 @@ We welcome contributions! If you would like to add new panoramas, update informa
 3.  Commit your changes (`git commit -m 'Add new panorama for the library'`).
 4.  Push to the branch (`git push origin feature/NewPanorama`).
 5.  Open a Pull Request.
-
-## 📜 License
-
-This project is licensed under the [Specify License, e.g., MIT License] - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgements
-
-* A special thanks to [Credit Name/Team Name] for capturing the 360 photosphere images.
-* The college administration for project support.
