@@ -2,31 +2,31 @@
 
 An interactive, immersive 360-degree virtual tour of our college campus, built using panorama photography and modern web technologies.
 
-## 🌟 Overview
+## Overview
 
 Welcome to the Virtual Campus Tour project! This application provides a comprehensive, immersive experience that allows users to explore our entire college campus from the comfort of their web browser. Using actual 360-degree photographs taken with a specialized camera, users can "walk" through the campus, visit specific departments, and access valuable information at every stop.
 
 ### Key Features
 
-* 📸 **Immersive 360 Photospheres:** High-quality panoramic images create a seamless, real-world presence.
-* 🚶 **Hierarchical 2-Way Navigation:** Intuitive navigation allows users to move both forward into deeper details (e.g., entering a building) and backward (e.g., returning to the main campus view).
-* 🎬 **Scene-to-Scene Transition:** Smooth transitions and hot-spots make navigation feel fluid and natural.
-* 📍 **Location Markers:** Every scene features a clear location indicator in the bottom-left corner so you always know where you are.
-* 🏷️ **Interactive Information Tags:** Clickable elements within the 360 scenes provide detailed information about buildings, offices, and landmarks.
-* 🗣️ **Voice-Speech Integration:** Embedded voice audio provides spoken information for a multi-sensory experience.
-* 🗺️ **Mini-2D Map (with Leaflet.js):** A dynamic, real-time mini-map in the bottom-right corner shows your current location relative to the whole campus.
-* 🗺️ **Interactive Landing Page Map:** The `index.html` page features a schematic, color-coded 2D map of the entire campus.
+* **Immersive 360 Photospheres:** High-quality panoramic images create a seamless, real-world presence.
+* **Hierarchical 2-Way Navigation:** Intuitive navigation allows users to move both forward into deeper details (e.g., entering a building) and backward (e.g., returning to the main campus view).
+* **Scene-to-Scene Transition:** Smooth transitions and hot-spots make navigation feel fluid and natural.
+* **Location Markers:** Every scene features a clear location indicator in the bottom-left corner so you always know where you are.
+* **Interactive Information Tags:** Clickable elements within the 360 scenes provide detailed information about buildings, offices, and landmarks.
+* **Voice-Speech Integration:** Embedded voice audio provides spoken information for a multi-sensory experience.
+* **Mini-2D Map (with Leaflet.js):** A dynamic, real-time mini-map in the bottom-right corner shows your current location relative to the whole campus.
+* **Interactive Landing Page Map:** The `index.html` page features a schematic, color-coded 2D map of the entire campus.
     * **Department Tooltips:** Hover over any department on the main map to see its name.
     * **"Start Campus Tour" Button:** Begins the tour from the Admin Office.
     * **Direct Department Access:** Click on a department on the map to jump directly to a dedicated page (`department-*.html`).
-* 🏫 **Dedicated Department Pages:** Each department has a focused page with:
+* **Dedicated Department Pages:** Each department has a focused page with:
     * Detailed descriptions.
     * A photo gallery.
     * A dedicated 3D tour within that specific department.
 
 ---
 
-## 🏗️ Project Structure & Directory
+## Project Structure & Directory
 
 The project follows a standard web development file structure:
 
@@ -61,7 +61,7 @@ The project follows a standard web development file structure:
 * **Leaflet.js:** Powers the interactive Mini-2D Map for position tracking.
 * **PHP:** Used for backend configuration and potentially handling user data.
 
-## 🚀 Getting Started
+## Getting Started
 
 To view the virtual tour:
 
@@ -71,7 +71,7 @@ To view the virtual tour:
     * Serve the `VIRTUAL-CAMPUS-TOUR` directory.
     * Navigate to `localhost:[port]/index.html`.
 
-## 📸 Contributions
+## Contributions
 
 We welcome contributions! If you would like to add new panoramas, update information tags, or improve the interface:
 
