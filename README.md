@@ -30,28 +30,55 @@ Welcome to the Virtual Campus Tour project! This application provides a comprehe
 
 The project follows a standard web development file structure:
 
-`VIRTUAL-CAMPUS-TOUR/`
-├── `assets/` 
-    ├── `images/`
-    ├── `static_flooring_maps/`         
-├── `images/`
-│   ├── `panorama/`         *(All 360 photosphere image files)*
-│   └── `static/`           *(Static images for galleries, UI icons, and the 2D maps)*
-├── `admin.html`            *(Start point of the tour - Admin Office scene)*
-├── `config.php`            *(Configuration and database connection file)*
-├── `department-architecture.html`
-├── `department-chemical.html`
-├── *(...other department pages...)*
-├── `dome.html`             *(Specific tour scene file)*
-├── `index.html`            *(Interactive 2D Map Landing Page)*
-├── `index3.html`           *(Alternative or test landing page)*
-├── `qr.html`               *(A page for QR codes to access the tour)*
-├── `register.html`         *(Registration or sign-in page, if required)*
-├── `script.js`             *(Main JavaScript logic for navigation and scene management)*
-├── `script3.js`            *(Secondary JavaScript file)*
-├── `style.css`             *(Main site styling and UI layout)*
-├── `style3.css`            *(Secondary CSS file)*
-└── `tour.html`             *(Generic tour scene container)*
+VIRTUAL-CAMPUS-TOUR/
+│
+├── assets/
+│   └── images/
+│       ├──maps/
+│       ├── campus-map.png
+│       └── floor-plan.png
+├── images/
+│   ├── panorama/                  # All 360° photosphere image files
+│   │   ├── admin_office.jpg
+│   │   ├── dome.jpg
+│   │   ├── architecture_dept.jpg
+│   │   ├── chemical_dept.jpg
+│   │   └── ... (other panoramas)
+│   │   
+│   └── static/                    # Static images (galleries, UI icons, 2D maps)
+│      ├── arrow-left.png
+│      ├── arrow-right.png
+│      ├── info.png
+│      ├── menu.png
+│      ├── campus-1.jpg
+│      ├── campus-2.jpg
+│      └── ... (gallery images)
+│          
+├── admin.html                         # Start point of the tour – Admin Office scene
+├── index.html                         # Interactive 2D Map Landing Page
+├── index3.html                        # Alternative / test landing page
+├── tour.html                          # Generic tour scene container
+├── dome.html                          # Specific tour scene file
+├── qr.html                            # QR codes page for accessing the tour
+├── register.html                      # Registration / sign-in page
+│
+├── department-architecture.html
+├── department-chemical.html
+├── department-computer.html
+├── department-civil.html
+├── department-electrical.html
+├── department-mechanical.html
+├── ... (other department pages)
+│
+├── config.php                         # Configuration & database connection
+├── script.js                          # Main JavaScript logic (navigation & scene mgmt)
+├── script3.js                         # Secondary JavaScript file
+├── style.css                          # Main site styling & UI layout
+├── style3.css                         # Secondary CSS file
+│
+├── .gitignore                         # Ignore sensitive/config files
+├── LICENSE                            # (Optional) License file
+└── README.md                          # Project documentation
 
 ## 🛠️ Technology Stack
 
