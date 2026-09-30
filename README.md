@@ -27,7 +27,7 @@ Welcome to the Virtual Campus Tour project! This application provides a comprehe
 ---
 
 ## Project Structure & Directory
-'''
+```
 VIRTUAL-CAMPUS-TOUR/
 │
 ├── assets/
@@ -77,7 +77,7 @@ VIRTUAL-CAMPUS-TOUR/
 ├── .gitignore                         # Ignore sensitive/config files
 ├── LICENSE                            # (Optional) License file
 └── README.md                          # Project documentation
-'''
+```
 
 ## 🛠️ Technology Stack
 
