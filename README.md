@@ -31,18 +31,17 @@ Welcome to the Virtual Campus Tour project! This application provides a comprehe
 The project follows a standard web development file structure:
 
 `VIRTUAL-CAMPUS-TOUR/`
-├── `.dist/`                *(Compiled/distributable assets)*
-├── `assets/`               *(Common site assets, fonts, etc.)*
-├── `database/`             *(Data files, likely JSON or database connection logic)*
+├── `assets/` 
+    ├── `images/`
+    ├── `static_flooring_maps/`         
 ├── `images/`
 │   ├── `panorama/`         *(All 360 photosphere image files)*
 │   └── `static/`           *(Static images for galleries, UI icons, and the 2D maps)*
 ├── `admin.html`            *(Start point of the tour - Admin Office scene)*
 ├── `config.php`            *(Configuration and database connection file)*
-├── `department-*.html`      *(Dedicated pages for individual departments, library, etc.)*
-│   ├── `department-architecture.html`
-│   ├── `department-chemical.html`
-│   └── *(...other department pages...)*
+├── `department-architecture.html`
+├── `department-chemical.html`
+├── *(...other department pages...)*
 ├── `dome.html`             *(Specific tour scene file)*
 ├── `index.html`            *(Interactive 2D Map Landing Page)*
 ├── `index3.html`           *(Alternative or test landing page)*
