@@ -1,0 +1,105 @@
+/* ===== GLOBAL RESET ===== */
+html, body {
+    margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+}
+
+/* ===== TOUR HEADER ===== */
+#tour-header {
+    position: absolute; top: 0; width: 100%; height: 60px;
+    background: rgba(255, 255, 255, 0.95); display: flex;
+    justify-content: space-between; align-items: center; padding: 0 25px;
+    box-sizing: border-box; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+#tour-header h1 { color: #7c4dff; font-size: 1.25rem; font-weight: 400; margin: 0 10px; }
+.header-left { display: flex; align-items: center; }
+
+.pill-button {
+    background: #7c4dff; color: white; border: none; padding: 10px 22px;
+    border-radius: 50px; cursor: pointer; font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s;
+}
+.pill-button:hover { background: #6a3de8; transform: scale(1.05); }
+
+/* ===== 2D IMAGE MAP (1/8 Screen Size) ===== */
+#map-block {
+    position: absolute; bottom: 25px; right: 25px; 
+    width: 22vw; 
+    max-width: 320px;
+    min-width: 200px;
+    background: white; border-radius: 15px; overflow: hidden; z-index: 1001;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12); border: 3px solid white;
+}
+
+#map-wrapper { position: relative; width: 100%; line-height: 0; }
+#map-img { width: 100%; height: auto; display: block; filter: brightness(0.95); }
+
+/* The Moving Red Pointer */
+#map-pointer {
+    position: absolute; width: 14px; height: 14px;
+    background: #ff1744; border: 2px solid white; border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 10;
+}
+
+#map-pointer::after {
+    content: ""; position: absolute; top: -4px; left: -4px; right: -4px; bottom: -4px;
+    border-radius: 50%; border: 2px solid #ff1744; 
+    animation: mapPulse 1.5s infinite;
+}
+
+@keyframes mapPulse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(2.8); opacity: 0; }
+}
+
+.map-region {
+    position: absolute; cursor: pointer; z-index: 5;
+    transition: background 0.3s ease;
+    border-radius: 4px;
+}
+.map-region:hover { background: rgba(124, 77, 255, 0.25); border: 1px dashed #7c4dff; }
+
+/* ===== PANORAMA & HOTSPOTS ===== */
+#panorama-container { position: absolute; top: 0; width: 100%; height: 100%; }
+#panorama { width: 100%; height: 100%; }
+
+.pnlm-hotspot-base.scene-hotspot {
+    background: url('https://img.icons8.com/material-rounded/48/7c4dff/long-arrow-up.png') no-repeat center;
+    background-size: 65%; background-color: rgba(255,255,255,0.9); border-radius: 50%;
+    width: 44px; height: 44px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+}
+.pnlm-hotspot-base.scene-hotspot:hover { transform: scale(1.15); }
+
+.pnlm-hotspot-base.info-hotspot {
+    background-color: #3b82f6; border: 2px solid white; border-radius: 50%;
+    width: 30px; height: 30px; color: white; text-align: center; 
+    font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Flashcard Styles */
+.info-card {
+    position: fixed; background: white; color: #333; padding: 18px;
+    border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    width: 240px; z-index: 3000; pointer-events: auto;
+    transform: translate(20px, -50%);
+    animation: cardSlideIn 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@keyframes cardSlideIn {
+    from { opacity: 0; transform: translate(40px, -50%); }
+    to { opacity: 1; transform: translate(20px, -50%); }
+}
+
+.info-card h3 { margin: 0 0 8px 0; font-size: 1.1rem; color: #7c4dff; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+.info-card p { margin: 0; font-size: 0.9rem; line-height: 1.5; color: #555; }
+.info-card .close-btn { 
+    position: absolute; top: 8px; right: 10px; border: none; 
+    background: none; cursor: pointer; font-size: 20px; color: #bbb;
+}
+.info-card .close-btn:hover { color: #ff1744; }

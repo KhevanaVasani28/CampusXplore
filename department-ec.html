@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electrical Engineering Department - SCET Virtual Campus</title>
+
+<!-- Pannellum CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.css"/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+min-height:100vh;
+}
+
+/* Navbar */
+
+.navbar{
+background:rgba(255,255,255,0.95);
+padding:20px 0;
+box-shadow:0 2px 20px rgba(0,0,0,0.1);
+}
+
+.container{
+max-width:1200px;
+margin:0 auto;
+padding:0 20px;
+}
+
+.navbar .container{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.navbar h1{
+font-size:1.8em;
+background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.back-btn{
+padding:10px 25px;
+background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+color:white;
+text-decoration:none;
+border-radius:30px;
+font-weight:600;
+transition:0.3s;
+}
+
+.back-btn:hover{
+transform:translateY(-2px);
+}
+
+/* Department Box */
+
+.department-container{
+background:white;
+border-radius:20px;
+padding:40px;
+margin:40px auto;
+box-shadow:0 10px 40px rgba(0,0,0,0.1);
+}
+
+/* Header */
+
+.department-header{
+display:flex;
+align-items:center;
+gap:30px;
+margin-bottom:40px;
+padding-bottom:30px;
+border-bottom:2px solid #f0f0f0;
+}
+
+.dept-title h2{
+color:#333;
+font-size:2.5em;
+margin-bottom:10px;
+}
+
+.dept-title p{
+color:#666;
+font-size:1.1em;
+}
+
+/* Image Gallery */
+
+.image-gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+margin-bottom:40px;
+}
+
+.gallery-item{
+background:#f8f9fa;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.gallery-item img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
+.gallery-item .caption{
+padding:15px;
+color:#333;
+font-weight:500;
+text-align:center;
+}
+
+/* Panorama Viewer */
+
+#panorama{
+width:100%;
+height:700px;
+border-radius:15px;
+margin-top:40px;
+}
+
+/* Info Section */
+
+.info-section{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+margin-top:40px;
+}
+
+.info-card{
+background:#f8f9fa;
+padding:25px;
+border-radius:15px;
+}
+
+.info-card h3{
+color:#667eea;
+margin-bottom:15px;
+font-size:1.3em;
+}
+
+.info-card p{
+color:#666;
+line-height:1.6;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.department-header{
+flex-direction:column;
+text-align:center;
+}
+
+.dept-title h2{
+font-size:1.8em;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+<div class="container">
+<h1>🏛️ SCET Virtual Campus</h1>
+<a href="index.html" class="back-btn">← Back to Map</a>
+</div>
+</nav>
+
+<div class="container">
+
+<div class="department-container">
+
+<div class="department-header">
+<div class="dept-title">
+<h2>Department of Electrical Engineering</h2>
+<p>Explore classrooms, labs, and facilities of the Electrical Engineering Department.</p>
+</div>
+</div>
+
+<!-- Image Gallery -->
+
+<div class="image-gallery">
+
+<div class="gallery-item">
+<img src="images/static/WhatsApp Image 2026-03-06 at 6.14.36 PM (2).jpeg">
+<div class="caption">Classroom</div>
+</div>
+
+<div class="gallery-item">
+<img src="images/static/WhatsApp Image 2026-03-06 at 6.14.27 PM.jpeg">
+<div class="caption">Staffroom</div>
+</div>
+
+<div class="gallery-item">
+<img src="images/static/WhatsApp Image 2026-03-06 at 6.14.19 PM (1).jpeg">
+<div class="caption">Laboratory</div>
+</div>
+
+</div>
+
+<!-- Information -->
+
+<div class="info-section">
+
+<div class="info-card">
+
+<h3>📝 Description</h3>
+
+<p>
+The Electrical Engineering Department is led by a strong team of qualified,
+dedicated, and experienced faculty members including Professors,
+Associate Professors, and Assistant Professors.
+It includes well-equipped laboratories such as Electrical Machines Lab,
+Control Systems Lab, Measurement & Instrumentation Lab,
+Power Systems Lab, Microprocessor Lab,
+Power Electronics Lab, and Computer Lab with licensed simulation software.
+</p>
+
+</div>
+
+</div>
+<!-- 360 Virtual Tour -->
+
+<h2 style="margin-top:40px;color :#667eea">Department Tour</h2>
+
+<div id="panorama"></div>
+</div>
+
+</div>
+
+<!-- Pannellum JS -->
+<script src="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.js"></script>
+
+<script>
+
+pannellum.viewer('panorama', {
+"type": "equirectangular",
+"panorama": "images/panorama/Electrical_inside.jpg",
+"autoLoad": true,
+"autorotate" :-2
+});
+
+</script>
+
+</body>
+</html>

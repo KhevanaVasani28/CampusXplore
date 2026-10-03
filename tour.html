@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>360 Virtual Tour - SCET Campus Explorer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="tour-body">
+    <div id="panorama"></div>
+    
+    <!-- Location Marker -->
+    <div class="location-marker" id="locationMarker">
+        📍 Current Location: Administration Block
+    </div>
+    
+    <!-- Mini Map -->
+    <div class="mini-map" id="miniMap">
+        <img src="assets/images/map/admin-mini.jpg" alt="Mini Map">
+        <div class="user-position"></div>
+    </div>
+    
+    <!-- Navigation Controls -->
+    <div class="tour-controls">
+        <button class="btn-nav" id="prevLocation" onclick="navigate('prev')">←</button>
+        <button class="btn-nav" id="nextLocation" onclick="navigate('next')">→</button>
+    </div>
+    
+    <!-- Flashcard Popup -->
+    <div class="flashcard" id="flashcard">
+        <h3 id="flashcardTitle"></h3>
+        <p id="flashcardContent"></p>
+        <button class="btn-close" onclick="closeFlashcard()">Close</button>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+    <script>
+        // Tour locations configuration
+        const tourLocations = [
+            {
+                id: 'admin',
+                title: 'Administration Block',
+                image: 'assets/panoramas/admin.jpg',
+                miniMap: 'assets/images/map/admin-mini.jpg',
+                hotspots: [
+                    {
+                        pitch: -10,
+                        yaw: 30,
+                        type: 'info',
+                        text: 'Main Office',
+                        description: 'The main administrative office handles all student records and official documentation.'
+                    },
+                    {
+                        pitch: -5,
+                        yaw: -45,
+                        type: 'scene',
+                        text: 'Go to Gateway',
+                        sceneId: 'gateway'
+                    }
+                ]
+            },
+            {
+                id: 'gateway',
+                title: 'Main Gateway',
+                image: 'assets/panoramas/gateway.jpg',
+                miniMap: 'assets/images/map/gateway-mini.jpg',
+                hotspots: [
+                    {
+                        pitch: -10,
+                        yaw: 90,
+                        type: 'scene',
+                        text: 'Go to Civil Department',
+                        sceneId: 'civil'
+                    },
+                    {
+                        pitch: -10,
+                        yaw: -90,
+                        type: 'scene',
+                        text: 'Go to Canteen',
+                        sceneId: 'canteen'
+                    },
+                    {
+                        pitch: -15,
+                        yaw: 180,
+                        type: 'scene',
+                        text: 'Back to Admin',
+                        sceneId: 'admin'
+                    }
+                ]
+            },
+            {
+                id: 'civil',
+                title: 'Civil Engineering Department',
+                image: 'assets/panoramas/civil.jpg',
+                miniMap: 'assets/images/map/civil-mini.jpg',
+                hotspots: [
+                    {
+                        pitch: -5,
+                        yaw: 45,
+                        type: 'info',
+                        text: 'Structural Lab',
+                        description: 'The structural engineering lab conducts research on building materials and construction techniques.'
+                    },
+                    {
+                        pitch: -10,
+                        yaw: -30,
+                        type: 'scene',
+                        text: 'Back to Gateway',
+                        sceneId: 'gateway'
+                    },
+                    {
+                        pitch: -15,
+                        yaw: 120,
+                        type: 'scene',
+                        text: 'Go to Library',
+                        sceneId: 'library'
+                    }
+                ]
+            },
+            {
+                id: 'canteen',
+                title: 'Student Canteen',
+                image: 'assets/panoramas/canteen.jpg',
+                miniMap: 'assets/images/map/canteen-mini.jpg',
+                hotspots: [
+                    {
+                        pitch: -5,
+                        yaw: 0,
+                        type: 'info',
+                        text: 'Food Court',
+                        description: 'Multiple food stalls serving variety of cuisines at affordable prices.'
+                    },
+                    {
+                        pitch: -10,
+                        yaw: 180,
+                        type: 'scene',
+                        text: 'Back to Gateway',
+                        sceneId: 'gateway'
+                    },
+                    {
+                        pitch: -15,
+                        yaw: -60,
+                        type: 'scene',
+                        text: 'Go to Library',
+                        sceneId: 'library'
+                    }
+                ]
+            },
+            {
+                id: 'library',
+                title: 'Central Library',
+                image: 'assets/panoramas/library.jpg',
+                miniMap: 'assets/images/map/library-mini.jpg',
+                hotspots: [
+                    {
+                        pitch: -5,
+                        yaw: 30,
+                        type: 'info',
+                        text: 'Reading Room',
+                        description: 'Silent reading area with capacity for 200 students.'
+                    },
+                    {
+                        pitch: -10,
+                        yaw: -45,
+                        type: 'scene',
+                        text: 'Back to Civil',
+                        sceneId: 'civil'
+                    },
+                    {
+                        pitch: -15,
+                        yaw: 120,
+                        type: 'scene',
+                        text: 'Back to Canteen',
+                        sceneId: 'canteen'
+                    }
+                ]
+            }
+        ];
+        
+        let currentLocationIndex = 0;
+        let viewer;
+        
+        // Initialize panorama viewer
+        function initPanorama(location) {
+            if (viewer) {
+                viewer.destroy();
+            }
+            
+            // Update location marker
+            document.getElementById('locationMarker').innerHTML = `📍 Current Location: ${location.title}`;
+            
+            // Update mini map
+            document.getElementById('miniMap').innerHTML = `
+                <img src="${location.miniMap}" alt="Mini Map">
+                <div class="user-position"></div>
+            `;
+            
+            // Configure hotspots
+            const hotspots = location.hotspots.map(hotspot => {
+                if (hotspot.type === 'info') {
+                    return {
+                        pitch: hotspot.pitch,
+                        yaw: hotspot.yaw,
+                        type: 'info',
+                        text: hotspot.text,
+                        clickHandlerFunc: function() {
+                            showFlashcard(hotspot.text, hotspot.description);
+                        }
+                    };
+                } else if (hotspot.type === 'scene') {
+                    return {
+                        pitch: hotspot.pitch,
+                        yaw: hotspot.yaw,
+                        type: 'scene',
+                        text: hotspot.text,
+                        sceneId: hotspot.sceneId
+                    };
+                }
+            });
+            
+            // Initialize pannellum
+            viewer = pannellum.viewer('panorama', {
+                type: 'equirectangular',
+                panorama: location.image,
+                autoLoad: true,
+                autoRotate: -2,
+                compass: true,
+                hotSpots: hotspots,
+                onLoad: function() {
+                    console.log('Panorama loaded');
+                }
+            });
+        }
+        
+        // Navigation function
+        function navigate(direction) {
+            if (direction === 'next') {
+                currentLocationIndex = (currentLocationIndex + 1) % tourLocations.length;
+            } else if (direction === 'prev') {
+                currentLocationIndex = (currentLocationIndex - 1 + tourLocations.length) % tourLocations.length;
+            }
+            
+            initPanorama(tourLocations[currentLocationIndex]);
+        }
+        
+        // Show flashcard with information
+        function showFlashcard(title, content) {
+            document.getElementById('flashcardTitle').textContent = title;
+            document.getElementById('flashcardContent').textContent = content;
+            document.getElementById('flashcard').classList.add('active');
+        }
+        
+        // Close flashcard
+        function closeFlashcard() {
+            document.getElementById('flashcard').classList.remove('active');
+        }
+        
+        // Handle scene navigation from hotspots
+        window.addEventListener('load', function() {
+            // Override the default scene loading
+            pannellum.viewer = function(container, config) {
+                const originalSceneHandler = config.onSceneChange;
+                
+                config.onSceneChange = function(sceneId) {
+                    const location = tourLocations.find(loc => loc.id === sceneId);
+                    if (location) {
+                        currentLocationIndex = tourLocations.indexOf(location);
+                        initPanorama(location);
+                    }
+                };
+                
+                return viewer;
+            };
+            
+            // Initialize first location
+            initPanorama(tourLocations[0]);
+        });
+    </script>
+    
+    <script src="script.js"></script>
+</body>
+</html>
