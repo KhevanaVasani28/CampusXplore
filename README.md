@@ -98,7 +98,7 @@ To view the virtual tour:
 
 ## Contributions
 
-We welcome contributions! If you would like to add new panoramas, update information tags, or improve the interface:
+We welcome contributions! If you would like to add more functionalities or improve the interface:
 
 1.  Fork the repository.
 2.  Create your feature branch (`git checkout -b feature/NewPanorama`).
