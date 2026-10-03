@@ -75,7 +75,6 @@ VIRTUAL-CAMPUS-TOUR/
 ├── style3.css                         # Secondary CSS file
 │
 ├── .gitignore                         # Ignore sensitive/config files
-├── LICENSE                            # (Optional) License file
 └── README.md                          # Project documentation
 ```
 
